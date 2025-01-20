@@ -15,23 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService service;
-    private BCryptPasswordEncoder encoder;
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    public MemberController(MemberService service, BCryptPasswordEncoder encoder, BCryptPasswordEncoder passwordEncoder) {
-        this.service = service;
-        this.encoder = encoder;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final BCryptPasswordEncoder encoder;
 
     @RequestMapping(value="/login.do")
-    public String login(String userId, String pw, Model model) {
+    public String login(String userId, String password, Model model) {
         Member member = service.selectMemberById(userId);
 
-        passwordEncoder.matches(pw, member.getPassword());
+        encoder.matches(password, member.getPassword());
 
-        if(member == null || !passwordEncoder.matches(pw, member.getPassword())) {
+        if(member == null || !encoder.matches(password, member.getPassword())) {
             model.addAttribute("msg","로그인 실패");
             model.addAttribute("loc","/login.do");
             return "common/msg";
