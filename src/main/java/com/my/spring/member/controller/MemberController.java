@@ -25,7 +25,7 @@ public class MemberController {
 
         if(member == null || !encoder.matches(password, member.getPassword())) {
             model.addAttribute("msg","로그인 실패");
-            model.addAttribute("loc","/login.do");
+            model.addAttribute("loc","/");
             return "common/msg";
         } else {
             //session.setAttribute("loginMember", member);
