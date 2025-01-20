@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- spring-bean을 설정하는 파일-->
+    <!--
+        bean태그를 이용해서 class를 springbean으로 등록
+        id : springbean이름
+        class : springbean으로 등록할 클래스 -> 패키지명.클래스명
+     -->
+
+</beans>
