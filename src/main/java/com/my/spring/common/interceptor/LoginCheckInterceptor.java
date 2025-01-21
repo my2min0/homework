@@ -14,7 +14,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //로그인 체크하기
         HttpSession session = request.getSession();
-        Member loginMember = (Member) session.getAttribute("loginMember");
+        Member loginMember = (Member)session.getAttribute("loginMember");
         if (loginMember == null) {
             request.setAttribute("msg", "로그인 후 이용할 수 있습니다.");
             request.setAttribute("loc", "/");

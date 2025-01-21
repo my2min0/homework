@@ -9,10 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/member")
+@SessionAttributes("loginMember")
 public class MemberController {
     private final MemberService service;
     private final BCryptPasswordEncoder encoder;
@@ -20,8 +22,6 @@ public class MemberController {
     @RequestMapping(value="/login.do")
     public String login(String userId, String password, Model model) {
         Member member = service.selectMemberById(userId);
-
-        encoder.matches(password, member.getPassword());
 
         if(member == null || !encoder.matches(password, member.getPassword())) {
             model.addAttribute("msg","로그인 실패");

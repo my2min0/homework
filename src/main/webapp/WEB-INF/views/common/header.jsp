@@ -14,8 +14,9 @@
 <div id="header">
     <header>
         <h1>HelloMVC</h1>
+        로그인 멤버${sessionScope.loginMember}
         <div class="login-container">
-            <c:if test="${sessionScope.loginMember==null }">
+            <c:if test="${loginMember==null }">
                 <form action="${path }/member/login.do" method="post">
                     <table>
                         <tr>
@@ -46,7 +47,7 @@
                     </table>
                 </form>
             </c:if>
-            <c:if test="${sessionScope.loginMember!=null }">
+            <c:if test="${loginMember!=null }">
                 <table id="logged-in">
                     <tr>
                         <td colspan="2">
