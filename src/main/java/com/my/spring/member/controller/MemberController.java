@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @RequiredArgsConstructor
 @Controller
@@ -32,5 +33,13 @@ public class MemberController {
             model.addAttribute("loginMember", member);
             return "redirect:/";
         }
+    }
+
+    @RequestMapping("/logout.do")
+    public String logout(SessionStatus status) {
+        if(!status.isComplete()) {
+            status.setComplete();
+        }
+        return "redirect:/";
     }
 }

@@ -14,7 +14,6 @@
 <div id="header">
     <header>
         <h1>HelloMVC</h1>
-        로그인 멤버${sessionScope.loginMember}
         <div class="login-container">
             <c:if test="${loginMember==null }">
                 <form action="${path }/member/login.do" method="post">
@@ -56,8 +55,7 @@
                     </tr>
                     <tr>
                         <td>
-                                <%-- 							<input type="button" value="내정보보기" onclick="location.assign('${path }/member/memberinfo.do?id${sessionScope.loginMember.userId }');">
-                                 --%>							<input type="button" value="내정보보기" onclick="fn_info();">
+                            <input type="button" value="내정보보기" onclick="fn_info();">
                         </td>
                         <td>
                             <input type="button" value="로그아웃" onclick="location.assign('${path }/member/logout.do');">
