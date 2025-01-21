@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int saveMember(Member member) {
-        return dao.saveMember(session,member);
+    public int insertMember(Member member) {
+        return dao.insertMember(session,member);
     }
 }

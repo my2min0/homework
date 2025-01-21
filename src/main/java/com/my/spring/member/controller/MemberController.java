@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -42,4 +44,23 @@ public class MemberController {
         }
         return "redirect:/";
     }
+
+    @PostMapping("/enrollmemberend.do")
+    public String enrollmemberend(Member member, Model model) {
+        String encPw = encoder.encode(member.getPassword());
+        member.setPassword(encPw);
+
+        int result = service.insertMember(member);
+        String msg, loc, viewName="common/msg";
+        if(result > 0) {
+            viewName = "redirect:/";
+        } else {
+            msg = "회원가입 실패";
+            loc = "/member/enrollmember.do";
+            model.addAttribute("msg", msg);
+            model.addAttribute("loc", loc);
+        }
+        return viewName;
+    }
+
 }

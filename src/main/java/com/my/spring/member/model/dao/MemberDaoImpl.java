@@ -12,7 +12,7 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
-    public int saveMember(SqlSession session, Member member) {
+    public int insertMember(SqlSession session, Member member) {
         return session.insert("member.saveMember", member);
     }
 }

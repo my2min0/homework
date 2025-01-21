@@ -4,5 +4,5 @@ import com.my.spring.member.model.dto.Member;
 
 public interface MemberService {
     Member selectMemberById(String userId);
-    int saveMember (Member member);
+    int insertMember (Member member);
 }

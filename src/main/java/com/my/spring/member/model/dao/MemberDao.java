@@ -5,5 +5,5 @@ import org.apache.ibatis.session.SqlSession;
 
 public interface MemberDao {
     Member selectMemberById(SqlSession session, String memberId);
-    int saveMember(SqlSession session, Member member);
+    int insertMember(SqlSession session, Member member);
 }
