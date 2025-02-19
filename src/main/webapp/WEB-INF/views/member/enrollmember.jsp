@@ -12,6 +12,7 @@
 				<th>아이디</th>
 				<td>
 					<input type="text" placeholder="4글자이상" name="userId" id="userId_">
+					<input type="button" value="중복확인" onclick="checkDuplicate();">
 				</td>
 			</tr>
 			<tr>
@@ -83,20 +84,20 @@
     </section>
     
 <script type="text/javascript">
-	// const fn_invalidate=()=>{
-	// 	const userId=document.querySelector("#userId_").value;
-	// 	if(userId.length<4) {
-	// 		alert("아이디는 4글자 이상 입력해주세요");
-	// 		document.querySelector("#userId_").focus();
-	// 		return false;
-	// 	}
-	// 	const passwordReg=/(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,}/;
-	// 	const password=document.querySelector("#password_").value;
-	// 	if(!passwordReg.test(password)){
-	// 		alert("비밀번호는 영문자, 숫자, 특수기호(!@#$%^&*())를 포함한 8글자 이상으로 입력해주세요.");
-	// 		return false;
-	// 	}
-	// }
+	const fn_invalidate=()=>{
+		const userId=document.querySelector("#userId_").value;
+		if(userId.length<4) {
+			alert("아이디는 4글자 이상 입력해주세요");
+			document.querySelector("#userId_").focus();
+			return false;
+		}
+		const passwordReg=/(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,}/;
+		const password=document.querySelector("#password_").value;
+		if(!passwordReg.test(password)){
+			alert("비밀번호는 영문자, 숫자, 특수기호(!@#$%^&*())를 포함한 8글자 이상으로 입력해주세요.");
+			return false;
+		}
+	}
 	document.querySelector("#password_2").addEventListener("keyup",e=>{
 		const password=document.querySelector("#password_").value;
 		const passwordcheck=e.target.value;
@@ -117,8 +118,17 @@
 				document.querySelector("#password_").focus(); */
 					//이걸 이용하면 비밀번호 잘못 이용됐을 때 비밀번호 사라짐
 			}
-		};
+		}
 	});
+
+	const checkDuplicate=()=>{
+		const userId = document.querySelector("#userId_").value;
+		if(!userId) {
+			alert("아이디를 입력해주세요!");
+			return;
+		}
+		window.open("${path}/member/idduplicate.do?userId="+userId,"_blank","width=400px, height=300px");
+	}
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

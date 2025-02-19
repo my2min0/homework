@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 @RequiredArgsConstructor
@@ -63,4 +60,13 @@ public class MemberController {
         return viewName;
     }
 
+    @GetMapping("/idduplicate.do")
+    public String idduplicate(String userId, Model model) {
+        if(userId != null) {
+            Member m = service.selectMemberById(userId);
+            model.addAttribute("result", m==null);
+            model.addAttribute("userId", userId);
+        }
+        return "/member/idduplicate";
+    }
 }
